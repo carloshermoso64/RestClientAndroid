@@ -10,7 +10,7 @@
         android:id="@+id/btupdate"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Button"
+        android:text="ACTUALIZAR"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -20,16 +20,16 @@
     <TextView
         android:id="@+id/tvDias"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_height="0dp"
         android:layout_marginEnd="32dp"
-        android:text="TextView"
+        android:text="Días de cuarentena"
         app:layout_constraintBottom_toBottomOf="@+id/etDias"
         app:layout_constraintEnd_toStartOf="@+id/etDias" />
 
 
     <EditText
         android:id="@+id/etDias"
-        android:layout_width="200dp"
+        android:layout_width="50dp"
         android:layout_height="wrap_content"
         android:layout_alignParentRight="true"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -41,7 +41,7 @@
 
     <EditText
         android:id="@+id/etPuntuacion"
-        android:layout_width="200dp"
+        android:layout_width="50dp"
         android:layout_height="wrap_content"
         android:layout_alignParentRight="true"
         android:layout_marginTop="30dp"
@@ -53,13 +53,13 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginEnd="32dp"
-        android:text="TextView"
+        android:text="Puntuación final"
         app:layout_constraintBottom_toBottomOf="@+id/etPuntuacion"
         app:layout_constraintEnd_toStartOf="@+id/etPuntuacion" />
 
     <EditText
         android:id="@+id/etSalud"
-        android:layout_width="200dp"
+        android:layout_width="50dp"
         android:layout_height="wrap_content"
         android:layout_alignParentRight="true"
         android:layout_marginTop="30dp"
@@ -71,13 +71,13 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginEnd="32dp"
-        android:text="TextView"
+        android:text="Nivel de salud"
         app:layout_constraintBottom_toBottomOf="@+id/etSalud"
         app:layout_constraintEnd_toStartOf="@+id/etSalud" />
 
     <EditText
         android:id="@+id/etEntretenimiento"
-        android:layout_width="200dp"
+        android:layout_width="50dp"
         android:layout_height="wrap_content"
         android:layout_alignParentRight="true"
         android:layout_marginTop="30dp"
@@ -85,11 +85,30 @@
         app:layout_constraintTop_toBottomOf="@+id/etSalud" />
 
     <TextView
+        android:id="@+id/tvAlimentos"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="32dp"
+        android:text="Alimentos almacenados"
+        app:layout_constraintBottom_toBottomOf="@+id/etAlimentos"
+        app:layout_constraintEnd_toStartOf="@+id/etAlimentos" />
+
+
+    <EditText
+        android:id="@+id/etAlimentos"
+        android:layout_width="50dp"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:layout_marginTop="30dp"
+        app:layout_constraintStart_toStartOf="@+id/etEntretenimiento"
+        app:layout_constraintTop_toBottomOf="@+id/etEntretenimiento" />
+
+    <TextView
         android:id="@+id/tvEntretenimiento"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginEnd="32dp"
-        android:text="TextView"
+        android:text="Nivel de entretenimiento"
         app:layout_constraintBottom_toBottomOf="@+id/etEntretenimiento"
         app:layout_constraintEnd_toStartOf="@+id/etEntretenimiento" />
 

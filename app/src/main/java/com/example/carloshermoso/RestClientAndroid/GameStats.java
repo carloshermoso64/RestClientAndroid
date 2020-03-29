@@ -5,10 +5,15 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.appcompat.app.AppCompatActivity;
 import okhttp3.OkHttpClient;
+import okhttp3.ResponseBody;
 import okhttp3.logging.HttpLoggingInterceptor;
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
+import android.media.MediaRouter;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.AbsListView;
@@ -47,12 +52,13 @@ public class GameStats extends AppCompatActivity {
         final EditText etSalud = (EditText) findViewById(R.id.etSalud);
         final EditText etEntretenimiento = (EditText) findViewById(R.id.etEntretenimiento);
         final EditText etPuntuacion = (EditText) findViewById(R.id.etPuntuacion);
+        final EditText etAlimentos = (EditText) findViewById(R.id.etAlimentos);
 
 
         Bundle extras = getIntent().getExtras();
         if(extras !=null)
         {
-            alimentos = extras.get("id").toString();
+            alimentos = extras.get("alimentos").toString();
             dias = extras.get("dias").toString();
             entretenimiento = extras.get("entretenimiento").toString();
             puntuacion = extras.get("puntuacion").toString();
@@ -61,8 +67,9 @@ public class GameStats extends AppCompatActivity {
 
             etDias.setText(dias);
             etEntretenimiento.setText(entretenimiento);
-            etSalud.setText(alimentos);
+            etSalud.setText(salud);
             etPuntuacion.setText(puntuacion);
+            etAlimentos.setText(alimentos);
 
         }
 
@@ -90,6 +97,11 @@ public class GameStats extends AppCompatActivity {
                 } catch (ParseException e) {
                     e.printStackTrace();
                 }
+                try {
+                    alimentosint = format.parse(etAlimentos.getText().toString()).intValue();
+                } catch (ParseException e) {
+                    e.printStackTrace();
+                }
 
                 Stats s = new Stats(id,puntuacionint,diasint,saludint,alimentosint,entretenimientoint);
 
@@ -110,7 +122,19 @@ public class GameStats extends AppCompatActivity {
 
                 RestExampleService service = retrofit.create(RestExampleService.class);
 
-                 Stats stats = service.updateStats(s);
+                 Call<ResponseBody> response = service.updateStats(s);
+
+                 response.enqueue(new Callback<ResponseBody>() {
+                     @Override
+                     public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
+
+                     }
+
+                     @Override
+                     public void onFailure(Call<ResponseBody> call, Throwable t) {
+
+                     }
+                 });
 
             }
         });
