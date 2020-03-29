@@ -1,6 +1,9 @@
 package com.example.carloshermoso.RestClientAndroid;
 
 import java.util.List;
+
+import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -12,7 +15,8 @@ import com.example.carloshermoso.RestClientAndroid.R;
 import androidx.recyclerview.widget.RecyclerView;
 
 public class MyAdapter extends RecyclerView.Adapter<MyAdapter.ViewHolder> {
-    private List<String> values;
+    private List<Stats> values;
+    private Context context;
 
     // Provide a reference to the views for each data item
     // Complex data items may need more than one view per item, and
@@ -23,6 +27,8 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.ViewHolder> {
         public TextView txtFooter;
         public View layout;
 
+
+
         public ViewHolder(View v) {
             super(v);
             layout = v;
@@ -31,7 +37,7 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.ViewHolder> {
         }
     }
 
-    public void add(int position, String item) {
+    public void add(int position, Stats item) {
         values.add(position, item);
         notifyItemInserted(position);
     }
@@ -42,15 +48,23 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.ViewHolder> {
     }
 
     // Provide a suitable constructor (depends on the kind of dataset)
-    public MyAdapter(List<String> myDataset) {
+    public MyAdapter(List<Stats> myDataset) {
         values = myDataset;
     }
+
+
+    public MyAdapter(Context context) {
+        this.context = context;
+    }
+
 
     // Create new views (invoked by the layout manager)
     @Override
     public MyAdapter.ViewHolder onCreateViewHolder(ViewGroup parent,
                                                    int viewType) {
         // create a new view
+        context=parent.getContext();
+
         LayoutInflater inflater = LayoutInflater.from(
                 parent.getContext());
         View v =
@@ -66,12 +80,19 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.ViewHolder> {
         // - get element from your dataset at this position
         // - replace the contents of the view with that element
         final ViewHolder vh = holder;
-        final String name = values.get(position);
-        holder.txtHeader.setText(name);
+        final Stats name = values.get(position);
+        holder.txtHeader.setText(name.toString());
         holder.txtHeader.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View v) {
-                remove(vh.getAdapterPosition());
+                Intent intent1 = new Intent(context,GameStats.class);
+                intent1.putExtra("alimentos",name.alimentos);
+                intent1.putExtra("dias", name.dias );
+                intent1.putExtra("entretenimiento", name.entretenimiento);
+                intent1.putExtra("puntuacion",name.puntuacion);
+                intent1.putExtra("id", name.id);
+                intent1.putExtra("salud", name.salud);
+                context.startActivity(intent1);
             }
         });
 

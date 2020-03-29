@@ -11,6 +11,7 @@ import retrofit2.Response;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -31,7 +32,7 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        setContentView(R.layout.activity_main);
+
         recyclerView = (RecyclerView) findViewById(R.id.my_recycler_view);
         // use this setting to
         // improve performance if you know that changes
@@ -77,13 +78,13 @@ public class MainActivity extends AppCompatActivity {
                     stats.enqueue(new Callback<List<Stats>>() {
                         @Override
                         public void onResponse(Call<List<Stats>> call, Response<List<Stats>> response) {
-                            List<String> input = new ArrayList<>();
+                            List<Stats> input = new ArrayList<>();
                             List<Stats> stats = response.body();
 
                             try{
                                 for (Stats s : stats) {
 
-                                    input.add(s.id);
+                                    input.add(s);
 
                                 }            } catch (NullPointerException e) {
                                 tv.setText("El usuario introducido es incorrecto");
@@ -103,4 +104,5 @@ public class MainActivity extends AppCompatActivity {
 
 
     }
+
 }
